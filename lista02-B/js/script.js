@@ -34,7 +34,7 @@ window.addEventListener("DOMContentLoaded", function () {
         return maior > users.salario ? maior : users.salario
     }, usersTable[0]);
 
-    document.write(`<p>O maior salário é = ${(maiorSalario)}</p>`);
+    document.write(`<p>Maria sexo feminino, idade 12 e o salário é = ${(maiorSalario)}</p>`);
 
     //letra D
     // Há alguma mulher que ganha acima de 5000,00
@@ -59,5 +59,6 @@ window.addEventListener("DOMContentLoaded", function () {
         return somaF = somaF + users.salario;
     });
     document.write(`<p> Média feminina= ${(somaF/mediaFeminina.length).toFixed(2)} </p>`);
+
 
 });
