@@ -34,7 +34,7 @@ window.addEventListener("DOMContentLoaded", function () {
         return maior > users.salario ? maior : users.salario
     }, usersTable[0]);
 
-    document.write(`<p>Maria sexo feminino, idade 12 e o salário é = ${(maiorSalario)}</p>`);
+    document.write(`<p>Nome: Maria, sexo: feminino, idade: 12, salário: ${(maiorSalario)}</p>`);
 
     //letra D
     // Há alguma mulher que ganha acima de 5000,00
@@ -62,3 +62,4 @@ window.addEventListener("DOMContentLoaded", function () {
 
 
 });
+
