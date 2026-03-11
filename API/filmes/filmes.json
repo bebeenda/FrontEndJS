@@ -1,5 +1,5 @@
 [
-{nome: "Deu a Louca na chapéuzinho", IMDB: 8.6, genero: "Comédia"},
-{nome: "O poderoso chefão", IMDB: 9.2, genero: "Suspense"},
-{nome: "A nova onda do imperador", IMDB: 10, genero "Comédia"}
+{"nome": "Deu a Louca na chapéuzinho", "IMDB": 8.6, "genero": "Comédia"},
+{"nome": "O poderoso chefão", "IMDB": 9.2, "genero": "Suspense"},
+{"nome": "A nova onda do imperador", "IMDB": 10, "genero" "Comédia"}
 ]
