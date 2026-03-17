@@ -1,1 +1,27 @@
-
+[
+  {
+    "nome": "Brenda Luana",
+    "depoimento": "Atendimento excelente! O produto superou minhas expectativas e a entrega foi muito rápida. Com certeza voltarei a comprar.",
+    "rating": 5
+  },
+  {
+    "nome": "Carlos Eduardo Souza",
+    "depoimento": "Boa experiência no geral. O produto é de qualidade, mas o prazo de entrega poderia ser um pouco melhor.",
+    "rating": 4
+  },
+  {
+    "nome": "Mariana Lima Costa",
+    "depoimento": "Fiquei muito satisfeita com o suporte ao cliente. Tive um problema e foi resolvido rapidamente. Recomendo!",
+    "rating": 4.5
+  },
+  {
+    "nome": "Thiago Henrique da Silva",
+    "depoimento": "Produto razoável pelo preço pago. Esperava um acabamento melhor, mas cumpre o que promete.",
+    "rating": 3
+  },
+  {
+    "nome": "Juliana Nascimento",
+    "depoimento": "Comprei pela segunda vez e não me arrependo. Qualidade consistente e ótimo custo-benefício. Já indiquei para amigos!",
+    "rating": 5
+  }
+]
