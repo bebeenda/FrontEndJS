@@ -1,0 +1,587 @@
+/* IMPORTS*/
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+
+/* RESET & VARIÁVEIS */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --bg:           #03060f;
+    --bg2:          #04091e;
+    --surface:      #050d22;
+    --card-bg:      #04091c;
+    --card-border:  rgba(80,120,220,0.2);
+    --blue:         #7ab0ff;
+    --blue-light:   #aaccff;
+    --blue-dim:     rgba(80,120,220,0.35);
+    --blue-glow:    rgba(100,150,255,0.4);
+    --cream:        #dde8ff;
+    --cream-dim:    #c8d8ff;
+    --muted:        #3a5080;
+    --text:         #8aaad8;
+
+    --font-display: 'Cinzel', serif;
+    --font-body:    'Crimson Pro', serif;
+
+    --radius:       8px;
+    --transition:   0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Meu céu estrelado*/
+#starCanvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Gradiente de profundidade do céu */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 90% 55% at 50% 0%,  #0a1a3d 0%, #050d20 50%, transparent 100%),
+        radial-gradient(ellipse 60% 40% at 10% 100%, #060f28 0%, transparent 65%),
+        radial-gradient(ellipse 50% 35% at 90% 80%,  #04091a 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* HERO*/
+.hero {
+    position: relative;
+    z-index: 10;
+    padding: 5rem 2.5rem 2.5rem;
+    text-align: center;
+}
+
+.hero-top {
+    display: flex;
+    align-items: center; /* alinha vertical */
+    justify-content: center; /* centraliza */
+    gap: 20px; /* espaço entre texto e imagem */
+}
+
+.hero-label {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: #4a6899;
+    margin-bottom: 0.85rem;
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-size: 70px;
+    font-weight: 900;
+    /* line-height: 0.95; */
+    align-items: end;
+    color: var(--cream);
+    text-shadow:
+        0 0 40px rgba(100, 150, 255, 0.35),
+        0 0 80px rgba(80, 120, 255, 0.12);
+    letter-spacing: 0.06em;
+}
+
+.hero-title em {
+    font-style: normal;
+    color: var(--blue);
+    text-shadow:
+        0 0 30px rgba(100, 170, 255, 0.75),
+        0 0 65px rgba(80, 140, 255, 0.35);
+}
+
+.hero-sub {
+    margin-top: 1.1rem;
+    font-size: 1.05rem;
+    color: var(--muted);
+    font-family: var(--font-body);
+    font-style: italic;
+    letter-spacing: 0.04em;
+}
+ 
+#coruja {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: clamp(80px, 15vw, 400px); /* era 15vw e 400px, reduzi */
+    height: auto;
+    z-index: 99999;
+}
+/* tablet */
+@media (max-width: 1024px) {
+    #coruja { width: 350px; }
+}
+
+/* celular grande */
+@media (max-width: 768px) {
+    #coruja { width: 180px; }
+}
+
+/* celular pequeno */
+@media (max-width: 480px) {
+    #coruja { width: 120px; }
+}
+
+#lua {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+
+    width: clamp(100px, 15vw, 400px);
+    height: auto;
+    z-index: 99999;
+
+    filter: drop-shadow(0 0 20px rgba(180, 210, 255, 0.8))
+            drop-shadow(0 0 60px rgba(120, 170, 255, 0.5))
+            drop-shadow(0 0 100px rgba(80, 130, 255, 0.3));
+
+    animation: luaBrilho 3s ease-in-out infinite;
+}
+
+@keyframes luaBrilho {
+    0%, 100% {
+        filter: drop-shadow(0 0 20px rgba(180, 210, 255, 0.8))
+                drop-shadow(0 0 60px rgba(120, 170, 255, 0.5))
+                drop-shadow(0 0 100px rgba(80, 130, 255, 0.3));
+    }
+    50% {
+        filter: drop-shadow(0 0 30px rgba(180, 210, 255, 1))
+                drop-shadow(0 0 80px rgba(120, 170, 255, 0.7))
+                drop-shadow(0 0 130px rgba(80, 130, 255, 0.45));
+    }
+}
+/* GRID DE FILMES */
+main {
+    position: relative;
+    z-index: 10;
+    padding: 10px 32px 200px; /* aumenta o bottom para dar espaço à coruja */
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.filmes-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    max-width: 1350px;
+    margin: 0 auto;
+}
+
+.filmes-row {
+    display: grid;
+    gap: 1.75rem;
+    justify-content: center;
+}
+
+.filmes-row:nth-child(1),
+.filmes-row:nth-child(3) {
+    grid-template-columns: repeat(3, minmax(0, 250px));
+}
+
+.filmes-row:nth-child(2) {
+    grid-template-columns: repeat(4, minmax(0, 250px));
+}
+/*CARD DE FILME*/
+.filme-card {
+    background: rgba(4, 9, 28, 0.8);
+    border: 2px solid var(--card-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    cursor: pointer;
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    animation: fadeUp 0.5s both;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.filme-card:hover {
+    transform: translateY(-8px) scale(1.015);
+    border-color: rgba(120, 170, 255, 0.5);
+    box-shadow:
+        0 22px 55px rgba(0, 0, 15, 0.75),
+        0 0 30px rgba(80, 130, 255, 0.1);
+}
+
+/* Cantos ornamentais */
+.filme-card::before,
+.filme-card::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-color: rgba(100, 150, 255, 0.4);
+    border-style: solid;
+    z-index: 3;
+    opacity: 0;
+    transition: opacity var(--transition);
+}
+.filme-card::before { top: 6px; left: 6px; border-width: 1px 0 0 1px; }
+.filme-card::after  { bottom: 6px; right: 6px; border-width: 0 1px 1px 0; }
+.filme-card:hover::before,
+.filme-card:hover::after { opacity: 1; }
+
+/* Rank */
+.filme-rank {
+    position: absolute;
+    top: 9px;
+    left: 9px;
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--cream-dim);
+    background: rgba(3, 6, 20, 0.88);
+    border: 1px solid rgba(80, 120, 220, 0.35);
+    padding: 2px 8px;
+    border-radius: 3px;
+    z-index: 2;
+    letter-spacing: 0.06em;
+}
+
+/* Poster */
+.filme-poster-wrap {
+    position: relative;
+    aspect-ratio: 3/4; /* era 2/3, quanto mais próximo de 1/1 mais quadrado */
+    overflow: hidden;
+    background: #04091e;
+}
+
+.filme-poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.55s ease;
+}
+
+.filme-card:hover .filme-poster { transform: scale(1.07); }
+
+.filme-poster-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(3, 6, 20, 0.97) 0%,
+        rgba(3, 6, 20, 0.22) 45%,
+        transparent 70%
+    );
+    pointer-events: none;
+}
+
+/* Info */
+.filme-info {
+    padding: 0.85rem 1rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    background: rgba(4, 9, 28, 0.95);
+}
+
+.filme-titulo {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    line-height: 1.25;
+    color: var(--cream-dim);
+}
+
+.filme-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filme-nota {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.8rem;
+    font-family: var(--font-display);
+    color: var(--blue);
+}
+
+.filme-nota::before {
+    content: "★";
+    font-size: 10px;
+    color: var(--blue-light);
+}
+
+.filme-genero {
+    font-size:14px;
+    color: var(--muted);
+    font-family: var(--font-body);
+    font-style: italic;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Botão */
+.btn-saiba-mais {
+    margin: 0 1rem 1rem;
+    padding: 0.55rem 0;
+    background: transparent;
+    border: 1px solid rgba(80, 120, 220, 0.3);
+    border-radius: 3px;
+    color: var(--blue);
+    font-family: var(--font-display);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+
+.btn-saiba-mais:hover {
+    background: rgba(80, 120, 220, 0.14);
+    border-color: rgba(120, 170, 255, 0.55);
+    color: var(--cream-dim);
+}
+
+/* SKELETON LOADER*/
+.loading-skeleton {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.75rem;
+}
+
+.sk-card {
+    aspect-ratio: 2/3;
+    border-radius: var(--radius);
+    background: linear-gradient(110deg, #04091e 30%, #0a1535 50%, #04091e 70%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+    border: 5px solid rgba(60, 90, 160, 0.15);
+}
+
+@keyframes shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* MODAL */
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.estrelas-explosao {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.onda-luz {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(120,170,255,0.2) 40%, transparent 70%);
+    animation: ondaPulsar 1.4s ease-out forwards;
+}
+
+@keyframes ondaPulsar {
+    0% {
+        transform: scale(0);
+        opacity: 0.6;
+    }
+    60% {
+        opacity: 0.2;
+    }
+    100% {
+        transform: scale(200);
+        opacity: 0;
+    }
+}
+
+.modal.open { pointer-events: all; opacity: 1; }
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(2, 4, 14, 0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    cursor: pointer;
+}
+
+.modal-box {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid rgba(100, 150, 255, 0.22);
+    border-radius: var(--radius);
+    max-width: 680px;
+    width: 100%;
+    overflow: hidden;
+    transform: scale(0.94) translateY(18px);
+    transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow:
+        0 40px 80px rgba(0, 0, 0, 0.85),
+        0 0 60px rgba(60, 100, 255, 0.05);
+}
+
+.modal.open .modal-box { transform: scale(1) translateY(0); }
+
+.modal-close {
+    position: absolute;
+    top: 11px;
+    right: 11px;
+    background: rgba(60, 100, 200, 0.08);
+    border: 1px solid rgba(80, 120, 220, 0.3);
+    color: var(--blue);
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: background var(--transition), color var(--transition);
+    font-family: var(--font-body);
+}
+
+.modal-close:hover { background: rgba(60, 80, 200, 0.3); color: #fff; }
+
+.modal-content { display: flex; }
+
+/* Poster lateral */
+.modal-poster-wrap { flex-shrink: 0; width: 195px; position: relative; }
+
+.modal-poster { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.modal-poster-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(100,150,255,0.3), transparent, rgba(100,150,255,0.3));
+}
+
+.modal-nota-badge {
+    position: absolute;
+    bottom: 11px;
+    left: 11px;
+    background: rgba(3, 6, 25, 0.92);
+    border: 1px solid rgba(100, 150, 255, 0.4);
+    color: var(--blue);
+    font-family: var(--font-display);
+    font-size: 0.88rem;
+    padding: 3px 10px;
+    border-radius: 3px;
+}
+
+.modal-nota-badge::before { content: "★ "; color: var(--blue-light); }
+
+/* Info */
+.modal-info {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    overflow-y: auto;
+    max-height: 430px;
+    background: linear-gradient(135deg, #050d22, #04091a);
+}
+
+.modal-info::-webkit-scrollbar { width: 3px; }
+.modal-info::-webkit-scrollbar-track { background: #03060f; }
+.modal-info::-webkit-scrollbar-thumb { background: rgba(80,120,220,0.4); border-radius: 2px; }
+
+.modal-generos { display: flex; flex-wrap: wrap; gap: 5px; }
+
+.genero-tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    border: 1px solid var(--blue-dim);
+    padding: 2px 9px;
+    border-radius: 2px;
+    font-family: var(--font-display);
+    background: rgba(40, 70, 160, 0.1);
+}
+
+.modal-titulo {
+    font-family: var(--font-display);
+    font-size: 1.55rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    color: var(--cream);
+    text-shadow: 0 0 20px rgba(100, 150, 255, 0.25);
+}
+
+.modal-titulo::after {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 1px;
+    background: rgba(100, 150, 255, 0.4);
+    margin-top: 0.55rem;
+}
+
+.modal-overview {
+    font-size: 19px;
+    line-height: 30px;
+    color: #bec0c1;
+    font-family: var(--font-body);
+    font-style: italic;
+}
+
+/* =============================================
+   RESPONSIVO
+   ============================================= */
+@media (max-width: 600px) {
+    .nav-inner { padding: 0 1.25rem; }
+    .hero { padding: 3rem 1.25rem 2rem; }
+    main { padding: 1.5rem 1rem 4rem; }
+    .filmes-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .modal-content { flex-direction: column; }
+    .modal-poster-wrap { width: 100%; height: 240px; }
+    .modal-poster { object-position: center 20%; }
+}
+
+.modal {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.ativo {
+    display: block;
+    opacity: 1;
+}

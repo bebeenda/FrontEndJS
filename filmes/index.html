@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corujão Filmes 🦉— Top 10</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/star.js" defer></script>
+</head>
+<body>
+
+    <!-- NAV
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a class="nav-logo" href="#">
+                <span class="logo-owl">🦉</span>
+                <span class="logo-text">CORUJ<em>ÃO</em> FILMES</span>
+            </a>
+            <div class="nav-image">
+                <img src="https://image.tmdb.org/t/p/w300/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg"
+                     alt="Destaque" class="nav-banner-img" id="navBannerImg">
+            </div>
+        </div>
+    </nav> -->
+
+    <!-- HERO -->
+    <header class="hero">
+    <div class="hero-label">
+        
+        <div class="hero-top">
+            <!-- <h1 class="hero-title">
+                Top 10 <br><em>Filmes</em>
+            </h1> -->
+            <!-- <img src="imagem/top10.png" alt="" width="300px" id="top10"> -->
+        
+        </div>
+
+
+    </div>
+</header>
+
+    <!-- GRID DE FILMES -->
+    <main>
+        <div id="cartazFilmes" class="filmes-grid">
+            <div class="loading-skeleton" aria-label="Carregando...">
+                <div class="sk-card"></div>
+                <div class="sk-card"></div>
+                <div class="sk-card"></div>
+                <div class="sk-card"></div>
+                <div class="sk-card"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- MODAL -->
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+        <div class="modal-box">
+            <button class="modal-close" id="modalClose" aria-label="Fechar">✕</button>
+            <div class="modal-content">
+                <div class="modal-poster-wrap">
+                    <img src="" alt="" id="modalPoster" class="modal-poster">
+                    <div class="modal-nota-badge" id="modalNota"></div>
+                </div>
+                <div class="modal-info">
+                    <div class="modal-generos" id="modalGeneros"></div>
+                    <h2 class="modal-titulo" id="modalTitulo"></h2>
+                    <p class="modal-overview" id="modalOverview"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js" type="module"></script>
+     <img src="imagem/lua.png" alt="Lua" id="lua">
+    <img src="imagem/logoSemOculos.png" alt="Coruja" id="coruja">
+</body>
+</html>
