@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.titulo{
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.grid-container {
+    display: grid;
+    gap: 15px;
+    max-width: 1500px;
+    margin: 0 auto;
+    /* Padrão Mobile: 1 coluna */
+    grid-template-columns: 1fr;
+}
+
+.card {
+    border: 2px solid #000;
+    border-radius: 15px;
+    padding: 20px;
+    background: #fff;
+    min-height: 100px;
+    text-align: justify;
+}
+
+/* --- REGRAS PARA DESKTOP --- */
+@media (min-width: 1024px) {
+    .grid-container {
+        /* Criamos 4 colunas iguais */
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Card que ocupa 2 colunas de largura (Topo Esquerda) */
+    .card-wide {
+        grid-column: span 2;
+    }
+
+    /* Card que ocupa 2 linhas de altura (Direita) */
+    .card-tall {
+        grid-row: span 2;
+        /* grid-column: 4; Força a ficar na última coluna */
+    }
+}
+
+/* --- REGRAS PARA TABLET --- */
+@media (min-width: 600px) and (max-width: 1023px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* No tablet, removemos as expansões complexas para não quebrar o fluxo */
+    .card-wide, .card-tall {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+}
